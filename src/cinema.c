@@ -4,6 +4,12 @@
 #include <ctype.h>
 #include "../include/cinema.h"
 
+// Функция для очистки буфера ввода (работает на всех платформах)
+void clear_input_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 CINEMA* create_cinema_array(int size) {
     if (size < 3) {
         printf("Warning: Minimum 3 records required. Using %d.\n", size);
@@ -24,10 +30,12 @@ CINEMA* create_cinema_array(int size) {
         fgets(cinema[i].movie_title, sizeof(cinema[i].movie_title), stdin);
         cinema[i].movie_title[strcspn(cinema[i].movie_title, "\n")] = 0;
 
-        // Date
+        // Date - ИСПРАВЛЕНО с очисткой
         printf("Date (DD.MM.YYYY): ");
         fgets(cinema[i].session_date, sizeof(cinema[i].session_date), stdin);
         cinema[i].session_date[strcspn(cinema[i].session_date, "\n")] = 0;
+        // Очистка буфера после даты
+        clear_input_buffer();
 
         // Time
         printf("Time (HH:MM): ");
@@ -37,7 +45,7 @@ CINEMA* create_cinema_array(int size) {
         // Duration
         printf("Duration (minutes): ");
         scanf("%d", &cinema[i].duration_minutes);
-        while (getchar() != '\n'); // Полная очистка буфера
+        clear_input_buffer();
 
         // Genre
         printf("Genre: ");
@@ -47,7 +55,7 @@ CINEMA* create_cinema_array(int size) {
         // Budget
         printf("Budget (million $): ");
         scanf("%f", &cinema[i].budget);
-        while (getchar() != '\n'); // Полная очистка буфера
+        clear_input_buffer();
     }
     return cinema;
 }
