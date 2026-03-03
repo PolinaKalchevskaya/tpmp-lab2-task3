@@ -9,12 +9,12 @@ int main() {
     printf("=== CINEMA MANAGEMENT SYSTEM ===\n");
     printf("Variant 35: CINEMA structure\n\n");
 
-    printf("Enter number of movies (minimum 12): ");
+    printf("Enter number of movies (minimum 3 for test): ");
     scanf("%d", &size);
     getchar();
 
-    if (size < 12) {
-        printf("Error: At least 12 movies required.\n");
+    if (size < 3) {  // ИЗМЕНИТЕ ЗДЕСЬ 12 -> 3
+        printf("Error: At least 3 movies required.\n");
         return 1;
     }
 
