@@ -24,7 +24,7 @@ $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
 $(BINDIR):
-	mkdir -p bin
+	mkdir -p $(BINDIR) 
 
 clean:
 	rm -f $(OBJDIR)/*.o $(TARGET)
