@@ -19,34 +19,35 @@ CINEMA* create_cinema_array(int size) {
     for (int i = 0; i < size; i++) {
         printf("\n--- Movie %d ---\n", i + 1);
 
+        // Title
         printf("Title: ");
         fgets(cinema[i].movie_title, sizeof(cinema[i].movie_title), stdin);
         cinema[i].movie_title[strcspn(cinema[i].movie_title, "\n")] = 0;
 
+        // Date
         printf("Date (DD.MM.YYYY): ");
         fgets(cinema[i].session_date, sizeof(cinema[i].session_date), stdin);
         cinema[i].session_date[strcspn(cinema[i].session_date, "\n")] = 0;
 
-        printf("Time (HH:MM or HH.MM): ");
+        // Time
+        printf("Time (HH:MM): ");
         fgets(cinema[i].session_time, sizeof(cinema[i].session_time), stdin);
         cinema[i].session_time[strcspn(cinema[i].session_time, "\n")] = 0;
-        for (int j = 0; cinema[i].session_time[j] != '\0'; j++) {
-            if (cinema[i].session_time[j] == '.') {
-                cinema[i].session_time[j] = ':';
-            }
-        }
 
+        // Duration
         printf("Duration (minutes): ");
         scanf("%d", &cinema[i].duration_minutes);
-        getchar();
+        while (getchar() != '\n'); // Полная очистка буфера
 
+        // Genre
         printf("Genre: ");
         fgets(cinema[i].genre, sizeof(cinema[i].genre), stdin);
         cinema[i].genre[strcspn(cinema[i].genre, "\n")] = 0;
 
+        // Budget
         printf("Budget (million $): ");
         scanf("%f", &cinema[i].budget);
-        getchar();
+        while (getchar() != '\n'); // Полная очистка буфера
     }
     return cinema;
 }
